@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ionz/akshay/wavtomp3.cpp
+stdio.h
+-
+lame/lame.h
+-
+
+/usr/local/include/lame/lame.h
+stddef.h
+-
+stdarg.h
+-
+stdio.h
+-
+

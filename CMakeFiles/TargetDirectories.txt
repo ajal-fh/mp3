@@ -1,0 +1,3 @@
+/home/ionz/akshay/CMakeFiles/rebuild_cache.dir
+/home/ionz/akshay/CMakeFiles/edit_cache.dir
+/home/ionz/akshay/CMakeFiles/akshay.dir
