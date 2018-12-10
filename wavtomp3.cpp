@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 {
     int read, write;
     cout << "Directory name: ";
-    string path;
+    string path,str_oldfile,str_newfile;
     getline(cin, path);
 
     DIR *dir = opendir(path.c_str());
@@ -32,9 +32,10 @@ int main(int argc, char **argv)
         if(has_suffix(entry->d_name, ".wav"))
         {
             cout << entry->d_name << endl;
-
-                FILE *pcm = fopen(path + /entry->d_name +".wav", "rb");
-                FILE *mp3 = fopen(path + /entry->d_name +".mp3", "wb");
+                str_oldfile = path+"/"+entry->d_name+".wav";
+                str_newfile = path+"/"+entry->d_name+".mp3";
+                FILE *pcm = fopen(str_file_found, "rb");
+                FILE *mp3 = fopen(str_newfile, "wb");
 
                 const int PCM_SIZE = 8192;
                 const int MP3_SIZE = 8192;
