@@ -22,8 +22,7 @@ int main(int argc, char **argv)
     cout << "Directory name: ";
     string path,strOldfile,strNewfile;
     
-    const char * oldF = strOldfile.c_str();
-    const char * newF = strNewfile.c_str();
+
     getline(cin, path);
 
     DIR *dir = opendir(path.c_str());
@@ -44,7 +43,8 @@ int main(int argc, char **argv)
                 strNewfile = path + "/" + (fName).substr(0,fileLen - 4) + ".mp3";
                 cout << strOldfile << endl;
                 cout << strNewfile << endl;
-
+                const char * oldF = strOldfile.c_str();
+                const char * newF = strNewfile.c_str();
 
                 FILE *pcm = fopen(oldF, "rb");
                 FILE *mp3 = fopen(newF, "wb");
@@ -68,7 +68,7 @@ int main(int argc, char **argv)
                     else
                         write = lame_encode_buffer_interleaved(lame, pcm_buffer, read, mp3_buffer, MP3_SIZE);
                     fwrite(mp3_buffer, write, 1, mp3);
-                    cout<<"after fwrite";
+                    
                 } while (read != 0);
 
                 lame_close(lame);
