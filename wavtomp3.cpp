@@ -6,6 +6,9 @@
 #include <dirent.h>
 #include <cstddef>
 
+lame_global_flags *lame;
+lame = lame_init();
+
 
 #define NULL 0
 
@@ -55,10 +58,14 @@ int main(int argc, char **argv)
                 short int pcm_buffer[PCM_SIZE*2];
                 unsigned char mp3_buffer[MP3_SIZE];
 
-                lame_t lame = lame_init();
+                //lame_t lame = lame_init();
                 lame_set_in_samplerate(lame, 44100);
-                lame_set_VBR(lame, vbr_default);
+                //lame_set_VBR(lame, vbr_default);
                 lame_init_params(lame);
+                
+                lame_set_brate(lame,128);
+                //lame_set_mode(lame,1);
+                lame_set_quality(lame,2);
 
                 do {
                     
