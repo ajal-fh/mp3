@@ -1,1 +1,1 @@
-/usr/bin/c++    -std=c++11    CMakeFiles/akshay.dir/wavtomp3.cpp.o  -o akshay  -L/usr/local/lib  -L/opt/pleora/ebus_sdk/Ubuntu-x86_64/lib -rdynamic -lmp3lame -Wl,-rpath,/usr/local/lib:/opt/pleora/ebus_sdk/Ubuntu-x86_64/lib 
+/usr/bin/c++    -std=c++11    CMakeFiles/akshay.dir/wavtomp3.cpp.o  -o akshay  -L/usr/local/lib -rdynamic -lmp3lame -Wl,-rpath,/usr/local/lib 

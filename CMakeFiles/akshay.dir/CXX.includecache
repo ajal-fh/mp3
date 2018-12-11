@@ -11,6 +11,16 @@ stdio.h
 -
 lame/lame.h
 -
+iostream
+-
+algorithm
+-
+string
+-
+dirent.h
+-
+cstddef
+-
 
 /usr/local/include/lame/lame.h
 stddef.h

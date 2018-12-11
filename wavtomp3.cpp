@@ -4,7 +4,10 @@
 #include <algorithm>
 #include <string>
 #include <dirent.h>
+#include <cstddef>
 
+
+#define NULL 0
 
 using namespace std;
 
@@ -17,7 +20,7 @@ int main(int argc, char **argv)
 {
     int read, write;
     cout << "Directory name: ";
-    string path,str_oldfile,str_newfile;
+    string path,strOldfile,strNewfile;
     getline(cin, path);
 
     DIR *dir = opendir(path.c_str());
@@ -27,15 +30,19 @@ int main(int argc, char **argv)
     }
 
     dirent *entry;
-    while((entry = readdir(dir))!=null) 
+    while((entry = readdir(dir))!=NULL) 
     {
         if(has_suffix(entry->d_name, ".wav"))
-        {
-            cout << entry->d_name << endl;
-                str_oldfile = path+"/"+entry->d_name+".wav";
-                str_newfile = path+"/"+entry->d_name+".mp3";
-                FILE *pcm = fopen(str_file_found, "rb");
-                FILE *mp3 = fopen(str_newfile, "wb");
+        {   
+            string fName = entry->d_name;
+            //cout << entry->d_name << endl;
+                int fileLen = (fName).length();
+                strOldfile = path + "/" + (fName).substr(0,fileLen - 4) + ".wav";
+                strNewfile = path + "/" + (fName).substr(0,fileLen - 4) + ".mp3";
+                cout << strOldfile << endl;
+                cout << strNewfile << endl;
+                FILE *pcm = fopen(strOldfile, "rb");
+                FILE *mp3 = fopen(strNewfile, "wb");
 
                 const int PCM_SIZE = 8192;
                 const int MP3_SIZE = 8192;
