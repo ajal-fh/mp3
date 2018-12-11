@@ -6,8 +6,7 @@
 #include <dirent.h>
 #include <cstddef>
 
-lame_global_flags *lame;
-lame = lame_init();
+
 
 
 #define NULL 0
@@ -58,27 +57,30 @@ int main(int argc, char **argv)
                 short int pcm_buffer[PCM_SIZE*2];
                 unsigned char mp3_buffer[MP3_SIZE];
 
+                lame_global_flags *tst;
+                tst = lame_init();
                 //lame_t lame = lame_init();
-                lame_set_in_samplerate(lame, 44100);
-                //lame_set_VBR(lame, vbr_default);
-                lame_init_params(lame);
+                lame_set_in_samplerate(tst, 44100);
+                lame_set_VBR(tst, vbr_default);
                 
-                lame_set_brate(lame,128);
-                //lame_set_mode(lame,1);
-                lame_set_quality(lame,2);
+                
+                lame_set_brate(tst,128);
+                //lame_set_mode(tst,1);
+                lame_set_quality(tst,2);
+                lame_init_params(tst);
 
                 do {
                     
                     read = fread(pcm_buffer, 2*sizeof(short int), PCM_SIZE, pcm);
                     if (read == 0)
-                        write = lame_encode_flush(lame, mp3_buffer, MP3_SIZE);
+                        write = lame_encode_flush(tst, mp3_buffer, MP3_SIZE);
                     else
-                        write = lame_encode_buffer_interleaved(lame, pcm_buffer, read, mp3_buffer, MP3_SIZE);
+                        write = lame_encode_buffer_interleaved(tst, pcm_buffer, read, mp3_buffer, MP3_SIZE);
                     fwrite(mp3_buffer, write, 1, mp3);
                     
                 } while (read != 0);
 
-                lame_close(lame);
+                lame_close(tst);
                 fclose(mp3);
                 fclose(pcm);
 
